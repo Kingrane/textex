@@ -2,6 +2,7 @@
 import type { Metadata } from 'next';
 import { Comfortaa, Inter } from 'next/font/google';
 import Script from 'next/script';
+import { isYandexAdsEnabled } from '@/lib/ads';
 import './globals.css';
 
 const comfortaa = Comfortaa({
@@ -81,14 +82,27 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const adsEnabled = isYandexAdsEnabled();
+
   return (
     <html lang="ru">
       <body className={`${comfortaa.variable} ${comfortaa.className} ${inter.variable}`}>
-        {/* Yandex.RTB Loader Code */}
-        <Script id="yandex-rtb-loader" strategy="beforeInteractive" dangerouslySetInnerHTML={{
-          __html: `window.yaContextCb=window.yaContextCb||[]`
-        }} />
-        <Script src="https://yandex.ru/ads/system/context.js" async strategy="beforeInteractive" />
+        {adsEnabled && (
+          <>
+            <Script
+              id="yandex-rtb-loader"
+              strategy="beforeInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `window.yaContextCb=window.yaContextCb||[]`,
+              }}
+            />
+            <Script
+              src="https://yandex.ru/ads/system/context.js"
+              async
+              strategy="beforeInteractive"
+            />
+          </>
+        )}
 
         {children}
       </body>
