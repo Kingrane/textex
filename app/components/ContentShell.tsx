@@ -16,7 +16,7 @@ const ContentShell: React.FC<ContentShellProps> = ({ title, children }) => {
   const colors = getThemeColors(false);
 
   return (
-    <main className={`flex min-h-screen flex-col items-center p-4 pt-10 pb-4 ${colors.pageBg}`}>
+    <main className={`flex min-h-screen flex-col items-center p-3 pt-8 pb-4 sm:p-4 sm:pt-10 ${colors.pageBg}`}>
       <div className="w-full max-w-lg">
         <Link
           href="/"
@@ -27,13 +27,13 @@ const ContentShell: React.FC<ContentShellProps> = ({ title, children }) => {
         </Link>
 
         <article
-          className={`w-full p-6 sm:p-8 space-y-5 ${colors.cardBg} border-4 ${colors.border} shadow-[8px_8px_0px_0px_var(--shadow-color)]`}
+          className={`w-full p-4 space-y-4 sm:p-8 sm:space-y-5 ${colors.cardBg} border-4 ${colors.border} shadow-[6px_6px_0px_0px_var(--shadow-color)] sm:shadow-[8px_8px_0px_0px_var(--shadow-color)]`}
           style={{ ['--shadow-color' as string]: colors.shadow }}
         >
-          <h1 className={`text-3xl font-black uppercase tracking-tight ${colors.text}`}>
+          <h1 className={`text-2xl font-black uppercase tracking-tight sm:text-3xl ${colors.text}`}>
             {title}
           </h1>
-          <div className={`space-y-5 text-sm font-medium leading-relaxed ${colors.text}`}>
+          <div className={`space-y-4 text-sm font-medium leading-relaxed sm:space-y-5 ${colors.text}`}>
             {children}
           </div>
         </article>

@@ -3,7 +3,7 @@
 
 import { ChangeEvent, useState } from 'react';
 import confetti from 'canvas-confetti';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import dynamic from 'next/dynamic';
 import { oneDark, oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import HowItWorks from '@/app/components/HowItWorks';
 import SiteFooter from '@/app/components/SiteFooter';
@@ -12,6 +12,17 @@ import { GITHUB_URL } from '@/lib/content';
 import { translateApiError } from '@/lib/i18n';
 import { getThemeColors, type ThemeMode } from '@/lib/theme';
 import { useI18n } from '@/lib/useI18n';
+
+// Heavy highlighter only loads when user retrieves code (not on first paint)
+const SyntaxHighlighter = dynamic(
+  () => import('react-syntax-highlighter').then((mod) => mod.Prism),
+  {
+    ssr: false,
+    loading: () => (
+      <pre className="p-4 text-sm font-mono whitespace-pre-wrap break-words opacity-70">…</pre>
+    ),
+  },
+);
 
 type ViewMode = 'plain' | 'highlight';
 type InputMode = 'text' | 'file';
@@ -257,10 +268,10 @@ export default function Home() {
   };
 
   return (
-    <main className={`flex min-h-screen flex-col items-center justify-start p-4 pt-20 sm:pt-24 relative ${colors.pageBg}`}>
-      <header className="fixed left-1/2 top-3 z-40 -translate-x-1/2">
+    <main className={`flex min-h-screen flex-col items-center justify-start p-3 pt-16 pb-4 sm:p-4 sm:pt-24 relative ${colors.pageBg}`}>
+      <header className="fixed left-1/2 top-2 z-40 w-[calc(100%-1rem)] max-w-lg -translate-x-1/2 sm:top-3 sm:w-auto sm:max-w-none">
         <div
-          className={`flex items-center gap-1 rounded-sm p-1 border-4 ${colors.border} ${colors.panelBg} shadow-[6px_6px_0px_0px_var(--shadow-color)] max-w-[calc(100vw-16px)]`}
+          className={`mx-auto flex w-fit max-w-full items-center gap-1 overflow-x-auto rounded-sm p-1 border-4 ${colors.border} ${colors.panelBg} shadow-[6px_6px_0px_0px_var(--shadow-color)]`}
           style={{ ['--shadow-color' as string]: colors.shadow }}
         >
           <button
@@ -316,8 +327,8 @@ export default function Home() {
         </div>
       </header>
 
-      <div className={`w-full max-w-lg p-8 space-y-6 ${colors.cardBg} border-4 ${colors.border} shadow-[8px_8px_0px_0px_var(--shadow-color)]`} style={{ ['--shadow-color' as string]: colors.shadow }}>
-        <h1 className={`text-4xl font-black text-center uppercase tracking-tight ${colors.text}`}>
+      <div className={`mt-2 w-full max-w-lg p-5 space-y-5 sm:mt-0 sm:p-8 sm:space-y-6 ${colors.cardBg} border-4 ${colors.border} shadow-[6px_6px_0px_0px_var(--shadow-color)] sm:shadow-[8px_8px_0px_0px_var(--shadow-color)]`} style={{ ['--shadow-color' as string]: colors.shadow }}>
+        <h1 className={`text-3xl font-black text-center uppercase tracking-tight sm:text-4xl ${colors.text}`}>
           qtxt
         </h1>
 

@@ -7,14 +7,16 @@ import './globals.css';
 
 const comfortaa = Comfortaa({
   subsets: ['latin', 'cyrillic'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '700'],
   variable: '--font-comfortaa',
+  display: 'swap',
 });
 
 const inter = Inter({
   subsets: ['latin', 'cyrillic'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '700'],
   variable: '--font-inter',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
