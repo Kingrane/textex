@@ -16,6 +16,8 @@ type TranslationKeys = {
   infoLabel: string;
 
   // Tabs
+  homeTitle: string;
+  homeLead: string;
   share: string;
   getCode: string;
 
@@ -114,6 +116,8 @@ const translations: Record<Locale, TranslationKeys> = {
     info: 'Инфо',
     infoLabel: 'О сервисе',
 
+    homeTitle: 'Поделиться текстом по короткому коду',
+    homeLead: 'Передайте текст между устройствами без регистрации. Он будет удалён через 10 минут.',
     share: 'Поделиться',
     getCode: 'Получить',
 
@@ -203,6 +207,8 @@ const translations: Record<Locale, TranslationKeys> = {
     info: 'Info',
     infoLabel: 'About',
 
+    homeTitle: 'Share text with a short code',
+    homeLead: 'Send text between devices without signing up. It will be deleted after 10 minutes.',
     share: 'Share',
     getCode: 'Get',
 

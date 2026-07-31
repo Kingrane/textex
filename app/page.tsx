@@ -329,8 +329,11 @@ export default function Home() {
 
       <div className={`mt-2 w-full max-w-lg p-5 space-y-5 sm:mt-0 sm:p-8 sm:space-y-6 ${colors.cardBg} border-4 ${colors.border} shadow-[6px_6px_0px_0px_var(--shadow-color)] sm:shadow-[8px_8px_0px_0px_var(--shadow-color)]`} style={{ ['--shadow-color' as string]: colors.shadow }}>
         <h1 className={`text-3xl font-black text-center uppercase tracking-tight sm:text-4xl ${colors.text}`}>
-          qtxt
+          {t.homeTitle}
         </h1>
+        <p className={`-mt-2 text-center text-sm font-medium leading-snug ${colors.muted}`}>
+          {t.homeLead}
+        </p>
 
         <div className="flex gap-3">
           <button
